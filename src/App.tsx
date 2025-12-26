@@ -1,8 +1,9 @@
-import { onCleanup, onMount } from 'solid-js'
+import { createMemo, onCleanup, onMount, createSignal } from 'solid-js'
 import mapboxgl, { type Map } from 'mapbox-gl'
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import data from '../data.yaml'
+import { effect } from 'solid-js/web'
 
 interface Item {
   name: string
@@ -12,16 +13,25 @@ interface Item {
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic3h6eiIsImEiOiJjbWpuMDlib2oxbmJzM2dweXRqeGFkOXo0In0.Lpjhw-do-fXE7crRESrEBg'
 
+const darkMedia = window.matchMedia('(prefers-color-scheme: dark)')
+darkMedia.addEventListener('change', (event) => setDark(event.matches))
+
+const [dark, setDark] = createSignal(darkMedia.matches)
+
 export function App() {
   const container = (
     <div id="map" style={{ width: '100vw', height: '100vh' }}></div>
+  )
+
+  const style = createMemo(
+    () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
   )
 
   let map: Map
   onMount(() => {
     map = new mapboxgl.Map({
       container: container as HTMLDivElement,
-      style: 'mapbox://styles/mapbox/light-v10',
+      style: style(),
       center: [100, 30],
       zoom: 2,
       projection: 'globe',
@@ -82,6 +92,10 @@ export function App() {
 
   onCleanup(() => {
     map.remove()
+  })
+
+  effect(() => {
+    map?.setStyle(style())
   })
 
   return (

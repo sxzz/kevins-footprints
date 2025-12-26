@@ -1,6 +1,12 @@
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
 .mapbox-marker {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 9999px;
   border: 1px solid #fff;
   box-shadow: 0 0 0 4px #11182714, 0 1px 3px #00000040;
@@ -19,6 +25,10 @@
 
 .mapbox-placeholder {
   padding: 1.2rem 1.6rem;
+}
+
+.mapboxgl-popup-content {
+  --at-apply: px-1.5 py-1 shadow-lg;
 }
 
 .mapbox-legend {
