@@ -17,12 +17,12 @@ const darkMedia = window.matchMedia('(prefers-color-scheme: dark)')
 darkMedia.addEventListener('change', (event) => setDark(event.matches))
 
 const [dark, setDark] = createSignal(darkMedia.matches)
-const style = createMemo(
-  () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
-)
 
 export function App() {
   const container = <div style={{ width: '100vw', height: '100vh' }}></div>
+  const style = createMemo(
+    () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
+  )
 
   let map: Map
   onMount(() => {
@@ -100,7 +100,8 @@ export function App() {
   })
 
   effect(() => {
-    map?.setStyle(style())
+    const _style = style()
+    map?.setStyle(_style)
   })
 
   return (
