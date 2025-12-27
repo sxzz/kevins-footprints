@@ -298,3 +298,29 @@
 
     - label: 悉尼 # R5750005
       coords: -33.8698439,151.2082848
+
+    - label: 京都 # N3628707764
+      coords: 34.9846076,135.7584303
+
+    - label: 函館 # N8206074563
+      coords: 41.7737872,140.7261884
+
+    - label: 札幌 # N4086852685
+      coords: 43.0686365,141.3509218
+
+    - label: Kuala Lumpur・吉隆坡 # R2939672
+      coords: 3.1526589,101.7022205
+
+    - label: Johor Bahru・新山 # N254237831
+      coords: 1.4581986,103.7649059
+
+    - label: London # R175342
+      coords: 51.5074456,-0.1277653
+
+    # They're a bit challenging for me right now, but who knows what the future holds?
+
+    - label: Toronto # R324211
+      coords: 43.6534817,-79.3839347
+
+    - label: Los Angeles # R207359
+      coords: 34.0536909,-118.242766
