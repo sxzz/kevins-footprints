@@ -24,7 +24,7 @@ export function App() {
           {(item) => (
             <For each={item.places}>
               {(place) => (
-                <PlaceMarker map={map()!} id={item.id} place={place} />
+                <PlaceMarker map={map()!} color={item.color} place={place} />
               )}
             </For>
           )}
@@ -68,10 +68,8 @@ export function LegendItem(props: {
 
   return (
     <div
-      classList={{
-        'flex cursor-pointer items-center gap-1.4 whitespace-nowrap': true,
-        'opacity-30': !isActive(),
-      }}
+      class="flex cursor-pointer items-center gap-1.4 whitespace-nowrap"
+      classList={{ 'opacity-30': !isActive() }}
       onClick={onClick}
     >
       <span

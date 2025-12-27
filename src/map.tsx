@@ -1,11 +1,9 @@
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
-import mapboxgl, { type Map } from 'mapbox-gl'
+import mapboxgl, { Map, Marker, Popup } from 'mapbox-gl'
 import { createMemo, createSignal, onCleanup, onMount } from 'solid-js'
 import { effect } from 'solid-js/web'
 import { useDark } from './utils'
 import 'mapbox-gl/dist/mapbox-gl.css'
-
-// @unocss-include
 
 interface Place {
   label: string
@@ -43,7 +41,7 @@ export function useMap(container: HTMLElement) {
   function initMap() {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 
-    const map = new mapboxgl.Map({
+    const map = new Map({
       container,
       style: style(),
       center: [100, 30],
@@ -77,52 +75,58 @@ export function useMap(container: HTMLElement) {
   }
 }
 
+// @unocss-include
 export function PlaceMarker({
   map,
-  id,
+  color,
   place,
 }: {
   map: Map
-  id: string
+  color: string
   place: Place
 }) {
   const { label, coords, current } = place
 
-  const element = document.createElement('div')
-  element.className = `mapbox-marker mapbox-marker--${id} ${
-    current ? 'animate-pulse' : ''
-  }`
-  element.setAttribute('aria-label', label)
-  element.tabIndex = 0
+  const show = () => popup.setLngLat(pos).addTo(map)
+  const hide = () => popup.remove()
+
+  const element = (
+    <div
+      class="h-2.5 w-2.5 cursor-pointer border border-white rounded-full bg-[var(--dot-color)] shadow-[0_4px_4px_var(--dot-color)] hover:shadow-[0_8px_24px_var(--dot-color)] hover:brightness-75"
+      classList={{
+        'w-4 h-4': current,
+      }}
+      style={{ '--dot-color': color }}
+      aria-label={label}
+      tabIndex={0}
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+      onClick={(evt) => {
+        evt.stopPropagation()
+        show()
+      }}
+    />
+  ) as HTMLDivElement
 
   const pos =
     typeof coords === 'string'
       ? (coords.split(',').map(Number).toReversed() as [number, number])
       : coords
 
-  const marker = new mapboxgl.Marker({ element, anchor: 'center' })
+  const marker = new Marker({ element, anchor: 'center' })
     .setLngLat(pos)
     .addTo(map)
 
-  const popup = new mapboxgl.Popup({
+  const popup = new Popup({
     offset: 8,
     closeButton: false,
     closeOnMove: false,
     focusAfterOpen: false,
   }).setText(label)
 
-  const show = () => popup.setLngLat(pos).addTo(map)
-  const hide = () => popup.remove()
-  element.addEventListener('mouseenter', show)
-  element.addEventListener('mouseleave', hide)
-  element.addEventListener('focus', show)
-  element.addEventListener('blur', hide)
-  element.addEventListener('click', (evt) => {
-    evt.stopPropagation()
-    show()
-  })
   map.on('click', hide)
-
   onCleanup(() => {
     marker.remove()
   })
