@@ -32,7 +32,7 @@ export function useMap(
   container: HTMLElement,
   projection?: Accessor<ProjectionSpecification['name']>,
 ) {
-  const [dark] = useDark()
+  const dark = useDark()
   const style = createMemo(
     () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
   )
@@ -74,11 +74,12 @@ export function useMap(
 
     map.addControl(
       new MapboxLanguage({
-        defaultLanguage: {
-          'zh-cn': 'zh-Hans',
-          'zh-hk': 'zh-Hant',
-          'zh-tw': 'zh-Hant',
-        }[navigator.language.toLowerCase()],
+        defaultLanguage: 'zh-Hans',
+        // defaultLanguage: {
+        //   'zh-cn': 'zh-Hans',
+        //   'zh-hk': 'zh-Hant',
+        //   'zh-tw': 'zh-Hant',
+        // }[navigator.language.toLowerCase()],
       }),
     )
 
