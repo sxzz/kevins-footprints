@@ -80,12 +80,11 @@ export function useMap(
 
     map.addControl(
       new MapboxLanguage({
-        defaultLanguage: 'zh-Hans',
-        // defaultLanguage: {
-        //   'zh-cn': 'zh-Hans',
-        //   'zh-hk': 'zh-Hant',
-        //   'zh-tw': 'zh-Hant',
-        // }[navigator.language.toLowerCase()],
+        defaultLanguage: {
+          'zh-cn': 'zh-Hans',
+          'zh-hk': 'zh-Hant',
+          'zh-tw': 'zh-Hant',
+        }[navigator.language.toLowerCase()],
       }),
     )
 
