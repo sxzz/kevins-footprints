@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
+    "@solid-primitives/set": "^0.7.2",
     "@unocss/reset": "^66.5.11",
     "mapbox-gl": "^3.17.0",
     "solid-js": "^1.9.10"
