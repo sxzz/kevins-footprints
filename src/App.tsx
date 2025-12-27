@@ -10,8 +10,7 @@ interface Item {
   coords: [number, number] | `${number},${number}`
 }
 
-mapboxgl.accessToken =
-  'pk.eyJ1Ijoic3h6eiIsImEiOiJjbWpuMDlib2oxbmJzM2dweXRqeGFkOXo0In0.Lpjhw-do-fXE7crRESrEBg'
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 
 const darkMedia = window.matchMedia('(prefers-color-scheme: dark)')
 darkMedia.addEventListener('change', (event) => setDark(event.matches))
