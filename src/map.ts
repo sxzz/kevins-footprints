@@ -1,9 +1,8 @@
-import mapboxgl, { type Map } from 'mapbox-gl'
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import mapboxgl, { type Map } from 'mapbox-gl'
 import { createMemo, onCleanup, onMount } from 'solid-js'
-import { useDark } from './utils'
 import { effect } from 'solid-js/web'
+import { useDark } from './utils'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 interface Item {
@@ -84,7 +83,7 @@ export function initMap(container: HTMLElement, style: string, data: MapData) {
 
       const pos =
         typeof coords === 'string'
-          ? (coords.split(',').map(Number).reverse() as [number, number])
+          ? (coords.split(',').map(Number).toReversed() as [number, number])
           : coords
 
       new mapboxgl.Marker({

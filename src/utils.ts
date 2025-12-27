@@ -1,7 +1,7 @@
 import { createSignal, onCleanup } from 'solid-js'
 
 export function useDark() {
-  const darkMedia = window.matchMedia('(prefers-color-scheme: dark)')
+  const darkMedia = globalThis.matchMedia('(prefers-color-scheme: dark)')
   const signal = createSignal(darkMedia.matches)
 
   const ac = new AbortController()

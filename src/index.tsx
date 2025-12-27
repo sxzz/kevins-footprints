@@ -5,6 +5,6 @@ import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import './styles.css'
 
-const root = document.getElementById('root')
+const root = document.querySelector('#root')
 
 render(() => <App />, root!)
