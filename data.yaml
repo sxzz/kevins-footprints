@@ -190,3 +190,98 @@
     - label: 2023.08 杭州良渚 # R8273083
       coords: 30.3825313,120.0418306
       current: true
+
+- id: airports
+  color: '#0ea5e9'
+  label: Airports
+  places:
+    # AI generated coordinates, may be inaccurate
+    - label: HGH # W328062510
+      coords: 30.2368729,120.4291244
+
+    - label: CAN # R19772898
+      coords: 23.3882356,113.3015568
+
+    - label: PVG # R19842271
+      coords: 31.1427399,121.8041131
+
+    - label: SIN # W174037464
+      coords: 1.3529750,103.9960555
+
+    - label: SZX # W479727227
+      coords: 22.6376434,113.8060769
+
+    - label: HKG # W28069671
+      coords: 22.3161669,113.9365027
+
+    - label: ICN # W316419197
+      coords: 37.4634593,126.4417093
+
+    - label: KHN # W151462512
+      coords: 28.8616845,115.9082328
+
+    - label: NRT # R3182579
+      coords: 35.7758710,140.3933101
+
+    - label: SHE # W444273995
+      coords: 41.6371012,123.4834834
+
+    - label: CKG # W103282476
+      coords: 29.7267284,106.6521085
+
+    - label: DLC # W93166761
+      coords: 38.9641515,121.5391765
+
+    - label: KIX # R9436735
+      coords: 34.4342040,135.2225230
+
+    - label: AMS # R12470437
+      coords: 52.3269810,4.7415053
+
+    - label: CJU # W550343242
+      coords: 33.5070711,126.4916441
+
+    - label: NKG # R1903184
+      coords: 31.7318390,118.8722910
+
+    - label: PEK # W292809708
+      coords: 40.0791556,116.5942602
+
+    - label: TFU # W529454532
+      coords: 30.3035511,104.4457088
+
+    - label: CDG # W294032205
+      coords: 49.0068908,2.5710820
+
+    - label: CSX # R16735999
+      coords: 28.1906280,113.2197974
+
+    - label: CTU # R9484398
+      coords: 30.5547770,103.9479075
+
+    - label: FUK # W529445584
+      coords: 33.5868020,130.4473939
+
+    - label: HND # R17864987
+      coords: 35.5456940,139.7760994
+
+    - label: IBR # W356582794
+      coords: 36.1824136,140.4208175
+
+    - label: LXA # W175406488
+      coords: 29.2962886,90.9079783
+
+    - label: MXP # W240969735
+      coords: 45.6296273,8.7235475
+
+    - label: PUS # R4450294
+      coords: 35.1800770,128.9364014
+
+    - label: SDJ # W57008836
+      coords: 38.1377913,140.9216114
+
+    - label: TSN # W107015361
+      coords: 39.1274600,117.3548362
+
+    - label: WUH # W233511368
+      coords: 30.7756953,114.2171790

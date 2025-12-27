@@ -8,7 +8,7 @@ export function App() {
     <div style={{ width: '100vw', height: '100vh' }}></div>
   ) as HTMLDivElement
 
-  const activeLegends = new ReactiveSet<string>(data.map((item) => item.id))
+  const activeLegends = new ReactiveSet<string>(['travel', 'residence'])
   const map = useMap(container)
 
   const filteredData = createDeferred(() =>
@@ -38,6 +38,7 @@ export function App() {
               id={item().id}
               label={item().label}
               color={item().color}
+              active={activeLegends.has(item().id)}
               onToggle={(value) => {
                 if (value) {
                   activeLegends.add(item().id)
@@ -57,9 +58,10 @@ export function LegendItem(props: {
   id: string
   label: string
   color: string
+  active?: boolean
   onToggle?: (value: boolean) => void
 }) {
-  const [isActive, setIsActive] = createSignal(true)
+  const [isActive, setIsActive] = createSignal(!!props.active)
   function onClick() {
     const newValue = !isActive()
     setIsActive(newValue)
