@@ -1,4 +1,5 @@
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
+import { usePrefersDark } from '@solid-primitives/media'
 import mapboxgl, {
   Map,
   Marker,
@@ -13,7 +14,6 @@ import {
   type Accessor,
 } from 'solid-js'
 import { effect } from 'solid-js/web'
-import { useDark } from './utils'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 interface Place {
@@ -31,7 +31,7 @@ export function useMap(
   container: HTMLElement,
   projection: Accessor<ProjectionSpecification['name']>,
 ) {
-  const dark = useDark()
+  const dark = usePrefersDark()
   const style = createMemo(
     () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
   )
