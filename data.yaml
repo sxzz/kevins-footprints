@@ -1,8 +1,7 @@
 # Coordinates from https://nominatim.openstreetmap.org/
 
-- id: visited
+- label: Visited
   color: 'oklch(76.9% 0.188 70.08)'
-  label: Visited
   places:
     # 🇨🇳 China mainland
 
@@ -196,9 +195,8 @@
     - label: 🇮🇹 Milan # R44915
       coords: 45.4641943,9.1896346
 
-- id: residence
+- label: Residence
   color: 'oklch(62.3% 0.214 259.815)'
-  label: Residence
   places:
     - label: 2018.07 南昌 # N244081434
       coords: 28.687547,115.8540042
@@ -213,9 +211,8 @@
       coords: 30.3825313,120.0418306
       current: true
 
-- id: airports
+- label: Airports
   color: 'oklch(68.5% 0.169 237.323)'
-  label: Airports
   places:
     # AI generated coordinates, may be inaccurate
     - label: HGH # W328062510
@@ -308,9 +305,8 @@
     - label: WUH # W233511368
       coords: 30.7756953,114.2171790
 
-- id: wishlist
+- label: Wishlist
   color: 'oklch(81% 0.117 11.638)'
-  label: Wishlist
   places:
     - label: 🇹🇼 台北 # R1293250
       coords: 25.0375198,121.5636796

@@ -9,13 +9,13 @@ export function App() {
     <div style={{ width: '100vw', height: '100vh' }}></div>
   ) as HTMLDivElement
 
-  const activeLegends = new ReactiveSet<string>(['visited', 'residence'])
+  const activeLegends = new ReactiveSet<string>(['Visited', 'Residence'])
   const [projection, setProjection] =
     createSignal<ProjectionSpecification['name']>('globe')
   const map = useMap(container, projection)
 
   const filteredData = createDeferred(() =>
-    data.filter((item) => activeLegends.has(item.id)),
+    data.filter((item) => activeLegends.has(item.label)),
   )
 
   return (
@@ -59,15 +59,14 @@ export function App() {
           <Index each={data}>
             {(item) => (
               <LegendItem
-                id={item().id}
                 label={item().label}
                 color={item().color}
-                active={activeLegends.has(item().id)}
+                active={activeLegends.has(item().label)}
                 onToggle={(value) => {
                   if (value) {
-                    activeLegends.add(item().id)
+                    activeLegends.add(item().label)
                   } else {
-                    activeLegends.delete(item().id)
+                    activeLegends.delete(item().label)
                   }
                 }}
               />
@@ -80,7 +79,6 @@ export function App() {
 }
 
 export function LegendItem(props: {
-  id: string
   label: string
   color: string
   active?: boolean

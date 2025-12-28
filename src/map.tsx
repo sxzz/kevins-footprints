@@ -22,7 +22,6 @@ interface Place {
   current?: boolean
 }
 export type MapData = {
-  id: string
   color: string
   label: string
   places: Place[]
