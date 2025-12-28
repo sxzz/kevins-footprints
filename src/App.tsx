@@ -9,7 +9,7 @@ export function App() {
     <div style={{ width: '100vw', height: '100vh' }}></div>
   ) as HTMLDivElement
 
-  const activeLegends = new ReactiveSet<string>(['travel', 'residence'])
+  const activeLegends = new ReactiveSet<string>(['visited', 'residence'])
   const [projection, setProjection] =
     createSignal<ProjectionSpecification['name']>('globe')
   const map = useMap(container, projection)

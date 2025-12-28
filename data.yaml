@@ -1,8 +1,8 @@
 # Coordinates from https://nominatim.openstreetmap.org/
 
-- id: travel
-  color: '#f97316'
-  label: Travel
+- id: visited
+  color: 'oklch(76.9% 0.188 70.08)'
+  label: Visited
   places:
     # 🇨🇳 China mainland
 
@@ -197,7 +197,7 @@
       coords: 45.4641943,9.1896346
 
 - id: residence
-  color: '#2563eb'
+  color: 'oklch(62.3% 0.214 259.815)'
   label: Residence
   places:
     - label: 2018.07 南昌 # N244081434
@@ -214,7 +214,7 @@
       current: true
 
 - id: airports
-  color: '#0ea5e9'
+  color: 'oklch(68.5% 0.169 237.323)'
   label: Airports
   places:
     # AI generated coordinates, may be inaccurate
@@ -308,9 +308,9 @@
     - label: WUH # W233511368
       coords: 30.7756953,114.2171790
 
-- id: wish
-  color: pink
-  label: Wish
+- id: wishlist
+  color: 'oklch(81% 0.117 11.638)'
+  label: Wishlist
   places:
     - label: 🇹🇼 台北 # R1293250
       coords: 25.0375198,121.5636796
