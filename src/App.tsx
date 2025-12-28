@@ -8,6 +8,7 @@ import type { ProjectionSpecification } from 'mapbox-gl'
 export function App() {
   const activeLegends = new ReactiveSet<string>(['Visited', 'Residence'])
   const [projection, setProjection] = makePersisted(
+    // eslint-disable-next-line solid/reactivity
     createSignal<ProjectionSpecification['name']>('globe'),
     { name: 'map-projection' },
   )
@@ -80,17 +81,14 @@ export function LegendItem(props: {
   active?: boolean
   onToggle?: (value: boolean) => void
 }) {
-  const [isActive, setIsActive] = createSignal(!!props.active)
   function onClick() {
-    const newValue = !isActive()
-    setIsActive(newValue)
-    props.onToggle?.(newValue)
+    props.onToggle?.(!props.active)
   }
 
   return (
     <div
       class="flex cursor-pointer items-center gap-1.4 whitespace-nowrap"
-      classList={{ 'opacity-30': !isActive() }}
+      classList={{ 'opacity-30': !props.active }}
       onClick={onClick}
     >
       <span

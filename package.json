@@ -29,6 +29,7 @@
     "@typescript/native-preview": "7.0.0-dev.20251227.1",
     "@unocss/eslint-plugin": "^66.5.11",
     "eslint": "^9.39.2",
+    "eslint-plugin-solid": "^0.14.5",
     "prettier": "^3.7.4",
     "typescript": "~5.9.3",
     "unocss": "^66.5.11",

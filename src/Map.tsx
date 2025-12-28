@@ -8,6 +8,8 @@ import mapboxgl, {
 } from 'mapbox-gl'
 import {
   createContext,
+  createDeferred,
+  createEffect,
   createMemo,
   createSignal,
   onCleanup,
@@ -17,7 +19,6 @@ import {
   type Accessor,
   type JSX,
 } from 'solid-js'
-import { effect } from 'solid-js/web'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 interface Place {
@@ -51,7 +52,7 @@ export function MapBox(props: {
     map()?.remove()
   })
 
-  effect(() => {
+  createEffect(() => {
     const m = map()
     const s = style()
 
@@ -59,7 +60,7 @@ export function MapBox(props: {
     m.setStyle(s)
   })
 
-  effect(() => {
+  createEffect(() => {
     const m = map()
     const p = props.projection
 
@@ -68,7 +69,7 @@ export function MapBox(props: {
   })
 
   const container = (
-    <div style={{ width: '100vw', height: '100vh' }}></div>
+    <div style={{ width: '100vw', height: '100vh' }} />
   ) as HTMLDivElement
   return (
     <>
@@ -118,25 +119,23 @@ export function MapBox(props: {
   }
 }
 
-export function PlaceMarker({ color, place }: { color: string; place: Place }) {
-  const { label, coords, current } = place
-
+export function PlaceMarker(props: { color: string; place: Place }) {
   const map = useContext(MapContext)?.()
   if (!map) {
     throw new Error('PlaceMarker must be used within a MapBox')
   }
 
-  const show = () => popup.setLngLat(pos).addTo(map)
+  const show = () => popup.setLngLat(position()).addTo(map)
   const hide = () => popup.remove()
 
   const element = (
     <div
       class="h-2.5 w-2.5 cursor-pointer border border-white rounded-full bg-[var(--dot-color)] shadow-[0_4px_4px_var(--dot-color)] hover:shadow-[0_8px_24px_var(--dot-color)] hover:brightness-75"
       classList={{
-        'w-4 h-4': current,
+        'w-4 h-4': props.place.current,
       }}
-      style={{ '--dot-color': color }}
-      aria-label={label}
+      style={{ '--dot-color': props.color }}
+      aria-label={props.place.label}
       tabIndex={0}
       onMouseEnter={show}
       onMouseLeave={hide}
@@ -149,25 +148,33 @@ export function PlaceMarker({ color, place }: { color: string; place: Place }) {
     />
   ) as HTMLDivElement
 
-  const pos =
-    typeof coords === 'string'
-      ? (coords.split(',').map(Number).toReversed() as [number, number])
-      : coords
-
   const marker = new Marker({ element, anchor: 'center' })
-    .setLngLat(pos)
-    .addTo(map)
-
   const popup = new Popup({
     offset: 8,
     closeButton: false,
     closeOnMove: false,
     focusAfterOpen: false,
-  }).setText(label)
+  })
+
+  const position = createDeferred(() => {
+    const { coords } = props.place
+    return typeof coords === 'string'
+      ? (coords.split(',').map(Number).toReversed() as [number, number])
+      : coords
+  })
+
+  createEffect(() => {
+    marker.setLngLat(position()).addTo(map)
+  })
+
+  createEffect(() => {
+    popup.setText(props.place.label)
+  })
 
   map.on('click', hide)
   onCleanup(() => {
     marker.remove()
+    map.off('click', hide)
   })
 
   return null
