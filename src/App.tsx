@@ -51,7 +51,7 @@ export function App() {
       </MapBox>
 
       <div class="absolute bottom-6 right-6 flex flex-col items-end gap-3">
-        <div class="flex items-center gap-3 rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
+        <div class="max-w-[calc(100vw-3rem)] flex items-center gap-3 overflow-x-auto rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
           <Index each={data}>
             {(item) => (
               <LegendItem
